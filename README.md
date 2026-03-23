@@ -28,3 +28,43 @@ Practicing Kubernetes using minikube
 - NortPort: exposes the app on a port of the node, is best for local work
 - LoadBalancer: Distribute request loads across different pods
 - ControlPlane: Keeps it all working
+
+# Getting Start
+Creates and starts a local kubernetes cluster with Docker as the runtime environment
+```minikube start --driver=docker```
+
+Shows where the K8s control plane is running
+```kubectl cluster-info```
+
+List of nodes that exist in the cluster
+```kubectl get nodes```
+
+Create a deployment named demo-minikube using the image: https://hub.docker.com/r/kicbase/echo-server/tags
+```kubectl create deployment demo-minikube --image=kicbase/echo-server:1.0```
+
+Shows a list of all the deployments
+```kubectl get deployment```
+
+Show a list of all the pods
+```kubectl get pods```
+
+Shows the description of the demo-minikube deployment
+```kubectl describe deployment demo-minikube```
+
+Make multiple pods of the same image inside the deployment
+```kubectl scale deployment demo-minikube --replicas=3```
+
+Expose the demo-minikube deployment through port 8080 
+```kubectl expose deployment demo-minikube --type=NodePort --port=8080```
+
+Get details of all the services running
+```kubectl get services```
+
+Starts a demo-minikube pod
+```minikube service demo-minikube --url```
+
+Deleting the minikube services
+```kubectl delete service demo-minikube```
+
+Deleting the minikube deployments
+```kubectl delete deployment demo-minikube```
